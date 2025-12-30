@@ -29,3 +29,49 @@
   </div>
 
   <audio id="clickSound" src="sound.mp3" preload="auto"></audio>
+
+  <script>
+    /*
+      出現率を上げたいものを多めに入れる
+      21〜24.png：3倍
+      25〜30.png：1倍
+    */
+    const omikujiPics = [
+      // 高確率ゾーン
+      "21.png","21.png","21.png",
+      "22.png","22.png","22.png",
+      "23.png","23.png","23.png",
+      "24.png","24.png","24.png",
+
+      // 通常確率ゾーン
+      "25.png",
+      "26.png",
+      "27.png",
+      "28.png",
+      "29.png",
+      "30.png"
+    ];
+
+    let isOmikuji = false;
+
+    const img = document.getElementById("card-image");
+    const sound = document.getElementById("clickSound");
+
+    img.addEventListener("click", () => {
+      // 効果音
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+
+      if (!isOmikuji) {
+        const idx = Math.floor(Math.random() * omikujiPics.length);
+        img.src = omikujiPics[idx];
+        isOmikuji = true;
+      } else {
+        img.src = "20.png";
+        isOmikuji = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
