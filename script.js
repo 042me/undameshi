@@ -19,7 +19,7 @@
         height: auto;
         max-width: 600px;
         opacity: 0; /* 最初は透明 */
-        transition: opacity 1.2s ease-in; /* フェードの時間 */
+        transition: opacity 10s ease-in; /* フェードの時間 */
     }
 
     /* 表示したときに opacity を 1 にするクラス */
