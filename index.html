@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* 画面全体に画像を表示 */
         body, html {
             margin: 0;
             padding: 0;
@@ -16,25 +15,52 @@
             background-color: #000;
         }
 
-        /* 画像のスタイルとアニメーション */
         #card-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 初回だけフェードインしたい場合は次の2行を有効にする */
-            /* opacity: 0;
-            animation: fadeIn 3s ease-in forwards; */
-            cursor: pointer; /* タップできる表示に */
-        }
-
-        /* フェードインアニメーション */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+
+    <div id="card-container">
+        <!-- 最初はトップ画像 -->
+        <img id="card-image" src="20.png" alt="おみくじトップ画像">
+    </div>
+
+    <!-- 効果音（同じフォルダに音声ファイルを置く）-->
+    <audio id="clickSound" src="sound.mp3"></audio>
+
+    <script>
+        // ランダムおみくじ画像のリスト
+        const omikujiPics = [
+            "21.png","22.png","23.png","24.png","25.png",
+            "26.png","27.png","28.png","29.png","30.png"
+        ];
+
+        let isOmikuji = false;
+
+        document.getElementById("card-image").onclick = function () {
+            const sound = document.getElementById("clickSound");
+            sound.currentTime = 0;
+            sound.play();  // クリック音
+
+            if (!isOmikuji) {
+                const idx = Math.floor(Math.random() * omikujiPics.length);
+                this.src = omikujiPics[idx];   // ランダムおみくじ
+                isOmikuji = true;
+            } else {
+                this.src = "20.png";  // トップ画像に戻す
+                isOmikuji = false;
+            }
+        };
+    </script>
+
+</body>
+</html>
+
 
     <div id="card-container">
         <!-- 初期表示は 20.png -->
