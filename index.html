@@ -1,96 +1,31 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-        }
-
-        #card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    #card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-    <div id="card-container">
-        <!-- 最初はトップ画像 -->
-        <img id="card-image" src="20.png" alt="おみくじトップ画像">
-    </div>
+  <div id="card-container">
+    <img id="card-image" src="20.png" alt="おみくじトップ画像">
+  </div>
 
-    <!-- 効果音（同じフォルダに音声ファイルを置く）-->
-    <audio id="clickSound" src="sound.mp3"></audio>
-
-    <script>
-        // ランダムおみくじ画像のリスト
-        const omikujiPics = [
-            "21.png","22.png","23.png","24.png","25.png",
-            "26.png","27.png","28.png","29.png","30.png"
-        ];
-
-        let isOmikuji = false;
-
-        document.getElementById("card-image").onclick = function () {
-            const sound = document.getElementById("clickSound");
-            sound.currentTime = 0;
-            sound.play();  // クリック音
-
-            if (!isOmikuji) {
-                const idx = Math.floor(Math.random() * omikujiPics.length);
-                this.src = omikujiPics[idx];   // ランダムおみくじ
-                isOmikuji = true;
-            } else {
-                this.src = "20.png";  // トップ画像に戻す
-                isOmikuji = false;
-            }
-        };
-    </script>
-
-</body>
-</html>
-
-
-    <div id="card-container">
-        <!-- 初期表示は 20.png -->
-        <img id="card-image" src="20.png" alt="おみくじトップ画像">
-    </div>
-
-    <script>
-        // おみくじ画像リスト（3〜12.png）
-        const omikujiPics = [
-            "21.png", "22.png", "23.png", "24.png", "25.png",
-            "26.png", "27.png", "28.png", "29.png", "30.png"
-        ];
-
-        // 現在おみくじ中か？（初期は false：20.png）
-        let isOmikuji = false;
-
-        // 画像クリック時の動作
-        document.getElementById("card-image").onclick = function () {
-            if (!isOmikuji) {
-                // ランダムに番号を選ぶ
-                const idx = Math.floor(Math.random() * omikujiPics.length);
-                this.src = omikujiPics[idx]; // ランダムおみくじ画像に
-                isOmikuji = true;
-            } else {
-                // 元のトップ画像（20.png）に戻す
-                this.src = "20.png";
-                isOmikuji = false;
-            }
-        };
-    </script>
-
-</body>
-</html>
+  <audio id="clickSound" src="sound.mp3" preload="auto"></audio>
