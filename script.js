@@ -12,26 +12,9 @@ const cards = [
 ];
 
 window.addEventListener("load", () => {
-  console.log("✅ JS loaded"); // ← これが出なければJS未読込
-
   const img = document.getElementById("card-image");
-  if (!img) {
-    console.error("❌ #card-image が見つかりません（id確認）");
-    return;
-  }
+  if (!img) return;
 
   const randomIndex = Math.floor(Math.random() * cards.length);
-  const selected = cards[randomIndex];
-
-  console.log("➡️ try set:", selected.imageUrl);
-
-  img.onerror = () => {
-    console.error("❌ 画像が読み込めません:", selected.imageUrl);
-  };
-
-  img.onload = () => {
-    console.log("✅ loaded:", selected.imageUrl);
-  };
-
-  img.src = selected.imageUrl;
+  img.src = cards[randomIndex].imageUrl;
 });
