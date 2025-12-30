@@ -11,26 +11,16 @@ const cards = [
   { name: "undameshi", imageUrl: "30.png" }
 ];
 
-function showRandomCard() {
-  const img = document.getElementById("card-image");
-  if (!img) return;
-
-  // フェード初期化
-  img.classList.remove("visible");
-  img.style.opacity = "0";
-
-  const randomIndex = Math.floor(Math.random() * cards.length);
-  const selectedCard = cards[randomIndex];
-
-  // src設定前に onload を仕込む（重要）
-  img.onload = () => {
-    requestAnimationFrame(() => {
-      img.classList.add("visible");
-    });
-  };
-
-  img.src = selectedCard.imageUrl;
+function fadeIn(img) {
+  requestAnimationFrame(() => {
+    img.classList.add("visible");
+  });
 }
 
-// 初期表示
-window.addEventListener("load", showRandomCard);
+function showRandomCard() {
+  const img = document.getElementById("card-image");
+  if (!img) return; // DOM未生成なら何もしない
+
+  // 毎回確実にフェードさせるため初期化
+  img.classList.remove("visible");
+  img.style.
