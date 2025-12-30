@@ -1,20 +1,37 @@
 const cards = [
-  { name: "undameshi", imageUrl: "21.png" },
-  { name: "undameshi", imageUrl: "22.png" },
-  { name: "undameshi", imageUrl: "23.png" },
-  { name: "undameshi", imageUrl: "24.png" },
-  { name: "undameshi", imageUrl: "25.png" },
-  { name: "undameshi", imageUrl: "26.png" },
-  { name: "undameshi", imageUrl: "27.png" },
-  { name: "undameshi", imageUrl: "28.png" },
-  { name: "undameshi", imageUrl: "29.png" },
-  { name: "undameshi", imageUrl: "30.png" }
+  { imageUrl: "21.png" },
+  { imageUrl: "22.png" },
+  { imageUrl: "23.png" },
+  { imageUrl: "24.png" },
+  { imageUrl: "25.png" },
+  { imageUrl: "26.png" },
+  { imageUrl: "27.png" },
+  { imageUrl: "28.png" },
+  { imageUrl: "29.png" },
+  { imageUrl: "30.png" }
 ];
 
-window.onload = function() {
-  const randomIndex = Math.floor(Math.random() * cards.length);
-  const selectedCard = cards[randomIndex];
+window.addEventListener("load", () => {
+  console.log("✅ JS loaded"); // ← これが出なければJS未読込
 
-  // カード画像を表示
-  document.getElementById('card-image').src = selectedCard.imageUrl;
-};
+  const img = document.getElementById("card-image");
+  if (!img) {
+    console.error("❌ #card-image が見つかりません（id確認）");
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * cards.length);
+  const selected = cards[randomIndex];
+
+  console.log("➡️ try set:", selected.imageUrl);
+
+  img.onerror = () => {
+    console.error("❌ 画像が読み込めません:", selected.imageUrl);
+  };
+
+  img.onload = () => {
+    console.log("✅ loaded:", selected.imageUrl);
+  };
+
+  img.src = selected.imageUrl;
+});
