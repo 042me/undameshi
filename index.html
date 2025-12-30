@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* 画面全体に画像を表示するスタイル */
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
 
-        /* 画像のスタイルとアニメーション */
-        #card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            animation: fadeIn 10s ease-in forwards; /* 5秒でゆっくりフェードイン */
-        }
+    #card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
 
-        /* フェードインアニメーション */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+      opacity: 0;
+      animation: fadeIn 5s ease-in forwards; /* ← 5秒に変更 */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-    <div id="card-container">
-        <img id="card-image" src="" alt="omikuji">
-    </div>
+  <div id="card-container">
+    <img id="card-image" src="" alt="omikuji">
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
