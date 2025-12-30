@@ -1,63 +1,44 @@
-/*
-  出現率を上げたいものを多めに入れる
-  21〜24.png：3倍
-  25〜30.png：1倍
-*/
-const omikujiPics = [
-  // 高確率ゾーン
-  "21.png","21.png","21.png",
-  "22.png","22.png","22.png",
-  "23.png","23.png","23.png",
-  "24.png","24.png","24.png",
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
 
-  // 通常確率ゾーン
-  "25.png",
-  "26.png",
-  "27.png",
-  "28.png",
-  "29.png",
-  "30.png"
-];
+    #card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
 
-let isOmikuji = false;
+      /* フェードイン（毎回） */
+      opacity: 0;
+      transition: opacity 5s ease-in;
+    }
 
-const img = document.getElementById("card-image");
-const sound = document.getElementById("clickSound");
+    #card-image.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
 
-function changeImageWithFade(src) {
-  // いったん透明に戻す（毎回フェードさせるため）
-  img.classList.remove("visible");
-  img.style.opacity = "0";
+  <div id="card-container">
+    <img id="card-image" src="20.png" alt="おみくじトップ画像">
+  </div>
 
-  // 読み込み完了後にフェードイン
-  img.onload = () => {
-    requestAnimationFrame(() => {
-      img.classList.add("visible");
-    });
-  };
+  <audio id="clickSound" src="sound.mp3" preload="auto"></audio>
 
-  // 画像切り替え
-  img.src = src;
-}
-
-// 初期表示（20.png）もフェードインさせる
-window.addEventListener("load", () => {
-  changeImageWithFade("20.png");
-});
-
-img.addEventListener("click", () => {
-  // 効果音（ユーザー操作内なので再生しやすい）
-  if (sound) {
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-  }
-
-  if (!isOmikuji) {
-    const idx = Math.floor(Math.random() * omikujiPics.length);
-    changeImageWithFade(omikujiPics[idx]);
-    isOmikuji = true;
-  } else {
-    changeImageWithFade("20.png");
-    isOmikuji = false;
-  }
-});
+  <!-- JavaScriptは別ファイル or 別scriptで貼り付け -->
+</body>
+</html>
