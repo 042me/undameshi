@@ -18,8 +18,8 @@
         width: 100%;
         height: auto;
         max-width: 600px;
-        opacity: 0; /* 最初は透明 */
-        transition: opacity 10s ease-in; /* フェードの時間 */
+        opacity: 0; /* 初期は透明 */
+        transition: opacity 5s ease-in; /* フェードイン時間を5秒に */
     }
 
     /* 表示したときに opacity を 1 にするクラス */
@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
 
     img.src = cards[randomIndex].imageUrl;
 
-    // 画像の読み込みが完了したら visible クラスを付けてフェードイン
+    // 画像の読み込みが完了したら visible クラスを付けて5秒フェードイン
     img.onload = () => {
         img.classList.add("visible");
     };
